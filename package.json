@@ -9,6 +9,7 @@
   "scripts": {
     "prepublish": "npm run clean && npm run lint && npm test && npm run build",
     "clean": "rimraf lib",
+    "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage && codecov",
     "lint": "eslint index.js tests",
