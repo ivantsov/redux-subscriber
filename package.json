@@ -1,0 +1,57 @@
+{
+  "name": "redux-subscriber",
+  "version": "1.0.0",
+  "description": "Subscribe to changes in any part of redux state",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "prepublish": "npm run clean && npm run lint && npm test && npm run build",
+    "clean": "rimraf lib",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage && codecov",
+    "lint": "eslint index.js tests",
+    "build": "babel index.js -d lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ivantsov/redux-subscriber.git"
+  },
+  "keywords": [
+    "redux",
+    "store",
+    "state",
+    "subscribe",
+    "subscriber",
+    "watch",
+    "watcher",
+    "observe",
+    "observer",
+    "react"
+  ],
+  "author": "Alexander Ivantsov <alexivantsov@ya.ru> (https://github.com/ivantsov)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ivantsov/redux-subscriber/issues"
+  },
+  "homepage": "https://github.com/ivantsov/redux-subscriber#readme",
+  "dependencies": {
+    "object-path": "^0.11.3"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-preset-es2015": "^6.18.0",
+    "codecov": "^1.0.1",
+    "eslint": "^3.11.1",
+    "eslint-config-airbnb-base": "^10.0.1",
+    "eslint-plugin-import": "^2.2.0",
+    "jest": "^17.0.3",
+    "rimraf": "^2.5.4"
+  },
+  "jest": {
+    "testRegex": "tests/.*.js$",
+    "resetMocks": true,
+    "resetModules": true
+  }
+}
