@@ -1,6 +1,6 @@
 # redux-subscriber
 
-[![Build Status](https://travis-ci.org/ivantsov/redux-webext.svg?branch=master)](https://travis-ci.org/ivantsov/redux-webext)
+[![Build Status](https://travis-ci.org/ivantsov/redux-subscriber.svg?branch=master)](https://travis-ci.org/ivantsov/redux-subscriber)
 [![codecov](https://codecov.io/gh/ivantsov/redux-subscriber/branch/master/graph/badge.svg)](https://codecov.io/gh/ivantsov/redux-subscriber)
 [![npm version](https://badge.fury.io/js/redux-subscriber.svg)](https://badge.fury.io/js/redux-subscriber)
 
