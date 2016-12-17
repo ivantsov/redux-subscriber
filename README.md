@@ -12,24 +12,20 @@ This package allows you to subscribe to changes in any part of [Redux](https://g
 
 ## Usage
 
-```javascript
-/*
- * store.js
- */
- 
+_store.js_
+```js
 import {createStore} from 'redux';
 import initSubscriber from 'redux-subscriber';
 
 const store = createStore(...);
 
-// "initSubscriber" returns "subscribe" function
+// "initSubscriber" returns "subscribe" function, so you can use it
 const subscribe = initSubscriber(store);
+```
 
-/*
- * somewhere-else.js
- */
-
-// also you can just import "subscribe" function
+_somewhere-else.js_
+```js
+// or you can just import "subscribe" function from the package
 import {subscribe} from 'redux-subscriber';
 
 const unsubscribe = subscribe('user.messages.count', state => {
