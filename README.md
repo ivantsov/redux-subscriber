@@ -21,17 +21,23 @@ import {createStore} from 'redux';
 import initSubscriber from 'redux-subscriber';
 
 const store = createStore(...);
-initSubscriber(store);
+
+// "initSubscriber" returns "subscribe" function
+const subscribe = initSubscriber(store);
 
 /*
  * somewhere-else.js
  */
 
+// also you can just import "subscribe" function
 import {subscribe} from 'redux-subscriber';
 
-subscribe('user.messages.count', state => {
+const unsubscribe = subscribe('user.messages.count', state => {
     // do something
 });
+
+// if you want to stop listening to changes
+unsubscribe();
 
 ```
 
@@ -46,6 +52,8 @@ subscribe('user.messages.count', state => {
 #### Options
 
 - `store` - instance of Redux store.
+
+Returns `subscribe` function.
 
 #### `subscribe(key, callbackFunction)` - subscribe `callbackFunction` to changes.
 
