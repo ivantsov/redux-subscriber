@@ -2,6 +2,20 @@ import {get} from 'object-path';
 
 const subscribers = {};
 
+export function subscribe(key, cb) {
+    if (subscribers.hasOwnProperty(key)) {
+        subscribers[key].push(cb);
+    }
+    else {
+        subscribers[key] = [cb];
+    }
+
+    // return "unsubscribe" function
+    return function () {
+        subscribers[key] = subscribers[key].filter(s => s !== cb);
+    };
+}
+
 export default function (store) {
     let prevState = store.getState();
 
@@ -16,18 +30,6 @@ export default function (store) {
 
         prevState = newState;
     });
-}
 
-export function subscribe(key, cb) {
-    if (subscribers.hasOwnProperty(key)) {
-        subscribers[key].push(cb);
-    }
-    else {
-        subscribers[key] = [cb];
-    }
-
-    // return "unsubscribe" function
-    return function () {
-        subscribers[key] = subscribers[key].filter(s => s !== cb);
-    };
+    return subscribe;
 }
