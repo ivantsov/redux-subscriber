@@ -1,6 +1,6 @@
 {
   "name": "redux-subscriber",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Subscribe to changes in any part of redux state",
   "main": "lib/index.js",
   "files": [
