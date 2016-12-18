@@ -1,4 +1,4 @@
-import {get} from 'object-path';
+import get from 'object-path-get';
 
 const subscribers = {};
 
