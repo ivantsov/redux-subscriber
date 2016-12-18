@@ -2366,9 +2366,9 @@ object-assign@^4.0.1, object-assign@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.0.tgz#7a3b3d0e98063d43f4c03f2e8ae6cd51a86883a0"
 
-object-path@^0.11.3:
-  version "0.11.3"
-  resolved "https://registry.yarnpkg.com/object-path/-/object-path-0.11.3.tgz#3e21a42ad07234d815429ae9e15c1c5f38050554"
+object-path-get@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/object-path-get/-/object-path-get-1.0.0.tgz#78c45b43c3cbf071582cfa32e655208cd2b950bb"
 
 object.omit@^2.0.0:
   version "2.0.1"
