@@ -1,7 +1,5 @@
 module.exports = {
-    extends: [
-        'airbnb-base'
-    ],
+    extends: ['airbnb-base'],
     env: {
         jest: true
     },
@@ -9,10 +7,15 @@ module.exports = {
         indent: ['error', 4],
         'comma-dangle': ['error', 'never'],
         'object-curly-spacing': ['error', 'never'],
-        'brace-style': ['error', 'stroustrup', {
-            'allowSingleLine': false
-        }],
+        'brace-style': [
+            'error',
+            'stroustrup',
+            {
+                allowSingleLine: false
+            }
+        ],
         'no-prototype-builtins': 'off',
-        'arrow-parens': 'off'
+        'arrow-parens': 'off',
+        'linebreak-style': ['error', 'unix']
     }
 };

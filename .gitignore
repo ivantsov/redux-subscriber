@@ -3,3 +3,4 @@ node_modules
 lib
 coverage
 *.log
+.vscode/settings.json

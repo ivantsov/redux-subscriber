@@ -1,3 +1,4 @@
+import {get} from 'object-path';
 import initSubscriber, {subscribe} from '../index';
 
 function createStore() {
@@ -38,7 +39,10 @@ describe('redux-subscriber', () => {
             const callbacks = subscribersKeys.map(key => {
                 const callback = jest.fn();
 
+                // test strings...
                 subscribe(key, callback);
+                // ...and selectors
+                subscribe((state) => get(state, key), callback);
 
                 return callback;
             });
@@ -47,10 +51,7 @@ describe('redux-subscriber', () => {
         }
 
         it('nothing has changed', () => {
-            const {store, callbacks} = testCase([
-                'key1.key11',
-                'key1.key11'
-            ]);
+            const {store, callbacks} = testCase(['key1.key11', 'key1.key11']);
 
             store.callSubscribeCallback();
 
@@ -58,10 +59,7 @@ describe('redux-subscriber', () => {
         });
 
         it('another part of state has changed', () => {
-            const {store, callbacks} = testCase([
-                'key1.key11',
-                'key1.key11'
-            ]);
+            const {store, callbacks} = testCase(['key1.key11', 'key1.key11']);
 
             store.setState({
                 key2: {
@@ -75,10 +73,7 @@ describe('redux-subscriber', () => {
         });
 
         it('high level part of state', () => {
-            const {store, callbacks} = testCase([
-                'key1',
-                'key1'
-            ]);
+            const {store, callbacks} = testCase(['key1', 'key1']);
 
             store.setState({
                 key1: 'somethingNew'
@@ -90,10 +85,7 @@ describe('redux-subscriber', () => {
         });
 
         it('deep level part of state', () => {
-            const {store, callbacks} = testCase([
-                'key1.key11',
-                'key1.key11'
-            ]);
+            const {store, callbacks} = testCase(['key1.key11', 'key1.key11']);
 
             store.setState({
                 key1: {
@@ -108,10 +100,7 @@ describe('redux-subscriber', () => {
         });
 
         it('change state structure', () => {
-            const {store, callbacks} = testCase([
-                'key1.key11',
-                'key1.key11'
-            ]);
+            const {store, callbacks} = testCase(['key1.key11', 'key1.key11']);
 
             store.setState({key1: 'newValue'});
             const newState = store.getState();
@@ -186,11 +175,7 @@ describe('redux-subscriber', () => {
         }
 
         it('2 subscribers, 1 unsubscribe', () => {
-            const {
-                store,
-                callbacks,
-                unsubscribers
-            } = testCase();
+            const {store, callbacks, unsubscribers} = testCase();
             const newState = store.getState();
 
             unsubscribers[0]();
@@ -201,11 +186,7 @@ describe('redux-subscriber', () => {
         });
 
         it('2 subscribers, 2 unsubscribe', () => {
-            const {
-                store,
-                callbacks,
-                unsubscribers
-            } = testCase();
+            const {store, callbacks, unsubscribers} = testCase();
 
             unsubscribers.forEach(fn => fn());
             store.callSubscribeCallback();

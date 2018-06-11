@@ -51,11 +51,11 @@ unsubscribe();
 
 Returns `subscribe` function.
 
-#### `subscribe(key, callbackFunction)` - subscribe `callbackFunction` to changes.
+#### `subscribe(selector, callbackFunction)` - subscribe `callbackFunction` to changes.
 
 #### Options
 
-- `key` - string which specified the part of state (e.g. `user.message.count`) to listen to. 
+- `selector` - string or function, string for which specified the part of state (e.g. `user.message.count`) to listen to, or function that accepts state as the first parameter and returns the state to listen to (i.e. a Redux selector function). 
 - `callbackFunction` - function which will be called when the part of state has changed. New state is passed as a parameter.
 
 Returns `unsubscribe` function which can be called to unsubscribe from changes.
