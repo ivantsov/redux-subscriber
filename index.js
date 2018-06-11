@@ -1,18 +1,50 @@
 import {get} from 'object-path';
 
-const subscribers = {};
+const subscribers = new Map();
+const getSelectors = new Map();
 
-export function subscribe(key, cb) {
-    if (subscribers.hasOwnProperty(key)) {
-        subscribers[key].push(cb);
+function createGetSelector(key) {
+    // ensure the key returns the same selector everytime
+    if (!getSelectors.has(key)) {
+        getSelectors.set(key, (state) => get(state, key));
+    }
+
+    return getSelectors.get(key);
+}
+
+export function subscribe(selector, cb) {
+    let subscriberKey;
+    switch (typeof selector) {
+    case 'string':
+        subscriberKey = createGetSelector(selector);
+        break;
+    case 'function':
+        subscriberKey = selector;
+        break;
+    default:
+        throw new Error(`Expected string or function but got ${typeof selector}`);
+    }
+
+    if (subscribers.has(subscriberKey)) {
+        subscribers.get(subscriberKey).add(cb);
     }
     else {
-        subscribers[key] = [cb];
+        subscribers.set(subscriberKey, new Set([cb]));
     }
 
-    // return "unsubscribe" function
+  // return "unsubscribe" function
     return function () {
-        subscribers[key] = subscribers[key].filter(s => s !== cb);
+        const callbackSet = subscribers.get(subscriberKey);
+
+        callbackSet.delete(cb);
+
+        if (callbackSet.size === 0) {
+            subscribers.delete(subscriberKey);
+
+            if (typeof selector === 'string') {
+                getSelectors.delete(selector);
+            }
+        }
     };
 }
 
@@ -22,9 +54,9 @@ export default function (store) {
     store.subscribe(() => {
         const newState = store.getState();
 
-        Object.keys(subscribers).forEach(key => {
-            if (get(prevState, key) !== get(newState, key)) {
-                subscribers[key].forEach(cb => cb(newState));
+        subscribers.forEach((callbacks, selector) => {
+            if (selector(prevState) !== selector(newState)) {
+                callbacks.forEach(cb => cb(newState));
             }
         });
 

@@ -1,6 +1,6 @@
 {
   "name": "redux-subscriber",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Subscribe to changes in any part of redux state",
   "main": "lib/index.js",
   "files": [
@@ -32,6 +32,9 @@
     "react"
   ],
   "author": "Alexander Ivantsov <alexivantsov@ya.ru> (https://github.com/ivantsov)",
+  "contributors": [
+    "Jack Allan <jackgeek@gmail.com> (https://www.linkedin.com/in/jackallan/)"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/ivantsov/redux-subscriber/issues"
