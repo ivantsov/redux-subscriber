@@ -13,6 +13,7 @@ This package allows you to subscribe to changes in any part of [Redux](https://g
 ## Usage
 
 _store.js_
+
 ```js
 import {createStore} from 'redux';
 import initSubscriber from 'redux-subscriber';
@@ -24,22 +25,22 @@ const subscribe = initSubscriber(store);
 ```
 
 _somewhere-else.js_
+
 ```js
 // or you can just import "subscribe" function from the package
 import {subscribe} from 'redux-subscriber';
 
 const unsubscribe = subscribe('user.messages.count', state => {
-    // do something
+  // do something
 });
 
 // if you want to stop listening to changes
 unsubscribe();
-
 ```
 
 ## Examples
 
-* https://github.com/ivantsov/yandex-mail-notifier-chrome - real app that uses `redux-subscriber`
+- https://github.com/ivantsov/yandex-mail-notifier-chrome - real app that uses `redux-subscriber`
 
 ## API
 
@@ -55,7 +56,7 @@ Returns `subscribe` function.
 
 #### Options
 
-- `key` - string which specified the part of state (e.g. `user.message.count`) to listen to. 
+- `key` - string which specified the part of state (e.g. `user.message.count`) to listen to.
 - `callbackFunction` - function which will be called when the part of state has changed. New state is passed as a parameter.
 
 Returns `unsubscribe` function which can be called to unsubscribe from changes.
