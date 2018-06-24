@@ -69,7 +69,8 @@ describe('redux-subscriber', () => {
 
     it('dispatch action inside subscriber callback, which changes another part of state', () => {
       const store = createStore(reducer);
-      let newState1, newState2;
+      let newState1;
+      let newState2;
 
       initSubscriber(store);
 
