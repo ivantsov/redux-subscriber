@@ -43,6 +43,7 @@
     "format:check": "prettier --list-different \"**/*.{js,json,ts,md}\""
   },
   "dependencies": {
+    "is-equal": "^1.6.1",
     "object-path": "^0.11.3"
   },
   "devDependencies": {
